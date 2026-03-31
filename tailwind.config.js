@@ -6,11 +6,16 @@ export default {
       colors: {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
-        primary: "hsl(var(--primary))",
+
         card: "hsl(var(--card))",
+        "card-foreground": "hsl(var(--card-foreground))",
+
+        primary: "hsl(var(--primary))",
+        "primary-foreground": "hsl(var(--primary-foreground))",
+
+        border: "hsl(var(--border))",
       },
     },
   },
-  content: ["./index.html", "./src/**/*.{ts,tsx}", "./src/**/*.css"],
   plugins: [],
 };
