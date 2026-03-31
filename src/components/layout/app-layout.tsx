@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { Sidebar } from "./sidebar";
+import { Header } from "./header";
 
 type AppLayoutProps = {
   children: ReactNode;
@@ -14,7 +15,10 @@ export function AppLayout({ children }: AppLayoutProps) {
       </aside>
 
       {/* Conteúdo */}
-      <main className="flex flex-col">{children}</main>
+      <main className="flex flex-col">
+        <Header />
+        {children}
+      </main>
     </div>
   );
 }
