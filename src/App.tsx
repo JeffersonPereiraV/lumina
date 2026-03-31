@@ -1,11 +1,21 @@
-import { AppLayout } from "./components/layout/app-layout";
+import { KanbanBoard } from "./components/kanban/kanban-board";
+import { useGamification } from "./store/use-gamification";
 
 export default function App() {
+  const { addTask } = useGamification();
+
   return (
-    <AppLayout>
-      <div className="p-6">
-        <h1 className="text-3xl font-bold text-primary">Lumina Dashboard</h1>
+    <div>
+      <div className="p-4">
+        <button
+          onClick={() => addTask("Nova tarefa")}
+          className="bg-primary text-white px-4 py-2 rounded"
+        >
+          Criar Task
+        </button>
       </div>
-    </AppLayout>
+
+      <KanbanBoard />
+    </div>
   );
 }
