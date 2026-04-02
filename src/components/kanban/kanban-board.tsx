@@ -4,15 +4,23 @@ import { Column } from "./column";
 export function KanbanBoard() {
   const { tasks } = useGamification();
 
-  const todo = tasks.filter((t) => t.status === "todo");
-  const doing = tasks.filter((t) => t.status === "doing");
-  const done = tasks.filter((t) => t.status === "done");
-
   return (
-    <div className="grid grid-cols-3 gap-4 p-6">
-      <Column title="Todo" status="todo" tasks={todo} />
-      <Column title="Doing" status="doing" tasks={doing} />
-      <Column title="Done" status="done" tasks={done} />
+    <div className="grid grid-cols-3 gap-4">
+      <Column
+        title="Todo"
+        status="todo"
+        tasks={tasks.filter((t) => t.status === "todo")}
+      />
+      <Column
+        title="Doing"
+        status="doing"
+        tasks={tasks.filter((t) => t.status === "doing")}
+      />
+      <Column
+        title="Done"
+        status="done"
+        tasks={tasks.filter((t) => t.status === "done")}
+      />
     </div>
   );
 }

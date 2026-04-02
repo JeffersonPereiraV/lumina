@@ -12,14 +12,11 @@ type Task = {
 type GamificationState = {
   xp: number;
   level: number;
-
   tasks: Task[];
 
   addXP: (amount: number) => void;
-  setXP: (xp: number) => void;
-
   addTask: (title: string) => void;
-  moveTask: (taskId: string, status: TaskStatus) => void;
+  moveTask: (id: string, status: TaskStatus) => void;
 };
 
 export const useGamification = create<GamificationState>((set, get) => ({
@@ -28,18 +25,13 @@ export const useGamification = create<GamificationState>((set, get) => ({
   tasks: [],
 
   addXP: (amount) => {
-    const currentXP = get().xp + amount;
-    const newLevel = Math.floor(currentXP / 1000) + 1;
+    const newXP = get().xp + amount;
+    const newLevel = Math.floor(newXP / 1000) + 1;
 
     set({
-      xp: currentXP,
+      xp: newXP,
       level: newLevel,
     });
-  },
-
-  setXP: (xp) => {
-    const level = Math.floor(xp / 1000) + 1;
-    set({ xp, level });
   },
 
   addTask: (title) => {
