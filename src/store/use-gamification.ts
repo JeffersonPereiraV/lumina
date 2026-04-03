@@ -9,20 +9,31 @@ type Task = {
   xpReward: number;
 };
 
+type XPEvent = {
+  id: string;
+  amount: number;
+};
+
 type GamificationState = {
   xp: number;
   level: number;
   tasks: Task[];
 
+  xpEvents: XPEvent[];
+
   addXP: (amount: number) => void;
   addTask: (title: string) => void;
   moveTask: (id: string, status: TaskStatus) => void;
+
+  addXPEvent: (amount: number) => void;
+  removeXPEvent: (id: string) => void;
 };
 
 export const useGamification = create<GamificationState>((set, get) => ({
   xp: 0,
   level: 1,
   tasks: [],
+  xpEvents: [],
 
   addXP: (amount) => {
     const newXP = get().xp + amount;
@@ -32,6 +43,23 @@ export const useGamification = create<GamificationState>((set, get) => ({
       xp: newXP,
       level: newLevel,
     });
+  },
+
+  addXPEvent: (amount) => {
+    const event: XPEvent = {
+      id: crypto.randomUUID(),
+      amount,
+    };
+
+    set((state) => ({
+      xpEvents: [...state.xpEvents, event],
+    }));
+  },
+
+  removeXPEvent: (id) => {
+    set((state) => ({
+      xpEvents: state.xpEvents.filter((e) => e.id !== id),
+    }));
   },
 
   addTask: (title) => {
@@ -57,6 +85,7 @@ export const useGamification = create<GamificationState>((set, get) => ({
 
         if (wasNotDone && willBeDone) {
           get().addXP(task.xpReward);
+          get().addXPEvent(task.xpReward); // 🔥 ANIMAÇÃO
         }
 
         return { ...task, status: newStatus };

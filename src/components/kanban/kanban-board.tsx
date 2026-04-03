@@ -7,17 +7,17 @@ export function KanbanBoard() {
   return (
     <div className="grid grid-cols-3 gap-4">
       <Column
-        title="Todo"
+        title="A Iniciar"
         status="todo"
         tasks={tasks.filter((t) => t.status === "todo")}
       />
       <Column
-        title="Doing"
+        title="Iniciado"
         status="doing"
         tasks={tasks.filter((t) => t.status === "doing")}
       />
       <Column
-        title="Done"
+        title="Finalizado"
         status="done"
         tasks={tasks.filter((t) => t.status === "done")}
       />

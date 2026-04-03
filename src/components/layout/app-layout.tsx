@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { Sidebar } from "./sidebar";
 import { Header } from "./header";
+import { XPLayer } from "../ui/xp-layer";
 
 type Props = {
   children: ReactNode;
@@ -17,6 +18,8 @@ export function AppLayout({ children }: Props) {
         <Header />
         <main className="flex-1">{children}</main>
       </div>
+
+      <XPLayer />
     </div>
   );
 }
