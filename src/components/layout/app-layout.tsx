@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { Sidebar } from "./sidebar";
 import { Header } from "./header";
-import { XPLayer } from "../ui/xp-layer";
+import { XPLayer, LevelLayer } from "../ui/xp-layer";
 
 type Props = {
   children: ReactNode;
@@ -19,7 +19,9 @@ export function AppLayout({ children }: Props) {
         <main className="flex-1">{children}</main>
       </div>
 
+      {/* 🔥 FEEDBACK VISUAL GLOBAL */}
       <XPLayer />
+      <LevelLayer />
     </div>
   );
 }
